@@ -266,6 +266,54 @@ def find_trapezoids(frame):
 
     mask = (distance > SAND_DISTANCE).astype(np.uint8) * 255
 
+    kernel = np.ones((3, 3), dtype=np.uint8)
+
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+
+    edges = cv2.Canny(mask, 100, 200)
+
+    lines = cv2.HoughLinesP(edges, rho=1, theta=np.pi/180, threshold=HOUGH_THRESHOLD, maxLineGap=HOUGH_MAX_GAP, minLineLength=HOUGH_MIN_LENGTH)
+
+    # check if HoughLinesP did not return None object
+    if lines is None:
+        return binary, trapezoids
+
+    scratch_mask = np.zeros_like(mask)
+
+    for line in lines:
+        x1, y1, x2, y2 = map(int, line[0])
+
+        cv2.line(scratch_mask, (x1,y1), (x2,y2), (255, 255, 255), 3)
+
+    scratch_kernel = np.ones((3, 3), dtype=np.uint8)
+
+    scratch_mask = cv2.morphologyEx(scratch_mask, cv2.MORPH_CLOSE, scratch_kernel)
+
+    contours, hierarchy = cv2.findContours(image=scratch_mask, mode=cv2.RETR_CCOMP, method=cv2.CHAIN_APPROX_SIMPLE)
+
+    if hierarchy is None:
+        return binary, trapezoids
+
+    hierarchy = hierarchy[0]
+
+    candidate = []
+
+    for i, contour in enumerate(contours):
+        parent = int(hierarchy[i][3])
+
+        if parent < 0:
+            continue
+
+        area = abs(cv2.contourArea(contour))
+
+        if area < MIN_TRAPEZOID_AREA:
+            continue
+
+        perimeter = cv2.arcLength(contour, True)
+
+        if perimeter <= 0:
+            continue
+
     ##################################################
 
     return binary, trapezoids

@@ -1,0 +1,71 @@
+[0.009s] Invoking command in '/home/aayush/eYRC/Software/workspace/build/task_1a': AMENT_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/aayush/eYRC/Software/workspace/src/task_1a -DCMAKE_INSTALL_PREFIX=/home/aayush/eYRC/Software/workspace/install/task_1a
+[0.144s] -- The C compiler identification is GNU 11.4.0
+[0.211s] -- The CXX compiler identification is GNU 11.4.0
+[0.218s] -- Detecting C compiler ABI info
+[0.343s] -- Detecting C compiler ABI info - done
+[0.353s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.353s] -- Detecting C compile features
+[0.354s] -- Detecting C compile features - done
+[0.358s] -- Detecting CXX compiler ABI info
+[0.488s] -- Detecting CXX compiler ABI info - done
+[0.498s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.499s] -- Detecting CXX compile features
+[0.500s] -- Detecting CXX compile features - done
+[0.503s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.648s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.791s] -- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.849s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.850s] -- Added test 'lint_cmake' to check CMake code style
+[0.850s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.851s] -- Added test 'xmllint' to check XML markup files
+[0.852s] -- Configuring done
+[0.855s] -- Generating done
+[0.856s] -- Build files have been written to: /home/aayush/eYRC/Software/workspace/build/task_1a
+[0.860s] Invoked command in '/home/aayush/eYRC/Software/workspace/build/task_1a' returned '0': AMENT_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /home/aayush/eYRC/Software/workspace/src/task_1a -DCMAKE_INSTALL_PREFIX=/home/aayush/eYRC/Software/workspace/install/task_1a
+[0.863s] Invoking command in '/home/aayush/eYRC/Software/workspace/build/task_1a': AMENT_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/task_1a -- -j6 -l6
+[0.920s] Built target ament_cmake_python_copy_task_1a
+[1.114s] running egg_info
+[1.114s] creating task_1a.egg-info
+[1.114s] writing task_1a.egg-info/PKG-INFO
+[1.115s] writing dependency_links to task_1a.egg-info/dependency_links.txt
+[1.115s] writing top-level names to task_1a.egg-info/top_level.txt
+[1.115s] writing manifest file 'task_1a.egg-info/SOURCES.txt'
+[1.116s] reading manifest file 'task_1a.egg-info/SOURCES.txt'
+[1.116s] writing manifest file 'task_1a.egg-info/SOURCES.txt'
+[1.139s] Built target ament_cmake_python_build_task_1a_egg
+[1.149s] Invoked command in '/home/aayush/eYRC/Software/workspace/build/task_1a' returned '0': AMENT_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/task_1a -- -j6 -l6
+[1.150s] Invoking command in '/home/aayush/eYRC/Software/workspace/build/task_1a': AMENT_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/task_1a
+[1.158s] -- Install configuration: ""
+[1.158s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/lib/task_1a/pixel_to_world_service
+[1.242s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/environment/pythonpath.sh
+[1.242s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/environment/pythonpath.dsv
+[1.243s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a-0.0.1-py3.10.egg-info
+[1.243s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a-0.0.1-py3.10.egg-info/SOURCES.txt
+[1.243s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a-0.0.1-py3.10.egg-info/top_level.txt
+[1.243s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a-0.0.1-py3.10.egg-info/PKG-INFO
+[1.243s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a-0.0.1-py3.10.egg-info/dependency_links.txt
+[1.243s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a
+[1.243s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a/__init__.py
+[1.243s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a/camera_detection_task1a_ready.py
+[1.243s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a/camera_detection.py
+[1.272s] Listing '/home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a'...
+[1.272s] Compiling '/home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a/__init__.py'...
+[1.272s] Compiling '/home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a/camera_detection.py'...
+[1.272s] Compiling '/home/aayush/eYRC/Software/workspace/install/task_1a/local/lib/python3.10/dist-packages/task_1a/camera_detection_task1a_ready.py'...
+[1.277s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/lib/task_1a/camera_detection
+[1.278s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/ament_index/resource_index/package_run_dependencies/task_1a
+[1.278s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/ament_index/resource_index/parent_prefix_path/task_1a
+[1.278s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/environment/ament_prefix_path.sh
+[1.278s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/environment/ament_prefix_path.dsv
+[1.278s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/environment/path.sh
+[1.278s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/environment/path.dsv
+[1.278s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/local_setup.bash
+[1.279s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/local_setup.sh
+[1.279s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/local_setup.zsh
+[1.279s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/local_setup.dsv
+[1.279s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.dsv
+[1.279s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/ament_index/resource_index/packages/task_1a
+[1.279s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/cmake/task_1aConfig.cmake
+[1.280s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/cmake/task_1aConfig-version.cmake
+[1.280s] -- Installing: /home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.xml
+[1.282s] Invoked command in '/home/aayush/eYRC/Software/workspace/build/task_1a' returned '0': AMENT_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/task_1a

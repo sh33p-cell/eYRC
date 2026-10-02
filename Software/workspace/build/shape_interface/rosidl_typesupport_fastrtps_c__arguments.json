@@ -1,0 +1,23 @@
+{
+  "package_name": "shape_interface",
+  "output_dir": "/home/aayush/eYRC/Software/workspace/build/shape_interface/rosidl_typesupport_fastrtps_c/shape_interface",
+  "template_dir": "/opt/ros/humble/share/rosidl_typesupport_fastrtps_c/resource",
+  "idl_tuples": [
+    "/home/aayush/eYRC/Software/workspace/build/shape_interface/rosidl_adapter/shape_interface:srv/GetShape.idl",
+    "/home/aayush/eYRC/Software/workspace/build/shape_interface/rosidl_adapter/shape_interface:srv/PixelToWorld.idl",
+    "/home/aayush/eYRC/Software/workspace/build/shape_interface/rosidl_adapter/shape_interface:msg/Shape.idl"
+  ],
+  "target_dependencies": [
+    "/opt/ros/humble/lib/rosidl_typesupport_fastrtps_c/rosidl_typesupport_fastrtps_c",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_typesupport_fastrtps_c/__init__.py",
+    "/opt/ros/humble/share/rosidl_typesupport_fastrtps_c/resource/idl__rosidl_typesupport_fastrtps_c.h.em",
+    "/opt/ros/humble/share/rosidl_typesupport_fastrtps_c/resource/idl__type_support_c.cpp.em",
+    "/opt/ros/humble/share/rosidl_typesupport_fastrtps_c/resource/msg__rosidl_typesupport_fastrtps_c.h.em",
+    "/opt/ros/humble/share/rosidl_typesupport_fastrtps_c/resource/msg__type_support_c.cpp.em",
+    "/opt/ros/humble/share/rosidl_typesupport_fastrtps_c/resource/srv__rosidl_typesupport_fastrtps_c.h.em",
+    "/opt/ros/humble/share/rosidl_typesupport_fastrtps_c/resource/srv__type_support_c.cpp.em",
+    "/home/aayush/eYRC/Software/workspace/build/shape_interface/rosidl_adapter/shape_interface/srv/GetShape.idl",
+    "/home/aayush/eYRC/Software/workspace/build/shape_interface/rosidl_adapter/shape_interface/srv/PixelToWorld.idl",
+    "/home/aayush/eYRC/Software/workspace/build/shape_interface/rosidl_adapter/shape_interface/msg/Shape.idl"
+  ]
+}
