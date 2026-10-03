@@ -1,8 +1,0 @@
-{
-  "package_name": "shape_interface",
-  "non_idl_tuples": [
-    "/home/aayush/eYRC/Software/workspace/src/shape_interface:srv/GetShape.srv",
-    "/home/aayush/eYRC/Software/workspace/src/shape_interface:srv/PixelToWorld.srv",
-    "/home/aayush/eYRC/Software/workspace/src/shape_interface:msg/Shape.msg"
-  ]
-}
