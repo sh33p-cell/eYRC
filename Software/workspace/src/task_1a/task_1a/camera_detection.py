@@ -30,6 +30,7 @@
 import math
 import time
 from collections import deque
+from urllib.robotparser import translate_pattern
 
 import cv2
 import numpy as np
@@ -146,11 +147,38 @@ def centre_of_quad(corners):
     cx, cy = 0.0, 0.0
 
     ##############  ADD YOUR CODE HERE  ##############
+    contour = np.asarray(corners, dtype=np.float32).reshape(-1, 1, 2)
 
+    moments = cv2.moments(contour)
+
+    if abs(moments["m00"]) < 1e-9:
+        return cx, cy
+
+    cx = float(moments["m10"] / moments["m00"])
+    cy = float(moments["m01"] / moments["m00"])
     ##################################################
 
     return cx, cy
 
+def angle_difference(a: float | int, b: float | int) -> float:
+    """
+    Return the difference between two line angles (modulo 180)
+
+    Parameters
+    ----------
+    a : float | int
+        First line angle
+    b : float | int
+        Second line angle
+
+    Returns
+    -------
+    float
+        Angle difference between the two line angles (``a`` and ``b``)
+    """
+
+    diff = abs(a - b)
+    return min(diff, 180.0 - diff)
 
 ##############################################################
 def find_trapezoids(frame):
@@ -296,7 +324,7 @@ def find_trapezoids(frame):
 
     hierarchy = hierarchy[0]
 
-    candidate = []
+    candidates = []
 
     for i, contour in enumerate(contours):
         parent = int(hierarchy[i][3])
@@ -309,11 +337,72 @@ def find_trapezoids(frame):
         if area < MIN_TRAPEZOID_AREA:
             continue
 
-        perimeter = cv2.arcLength(contour, True)
+        perimeter = cv2.arcLength(contour, closed=True)
 
         if perimeter <= 0:
             continue
 
+        approx = cv2.approxPolyDP(contour, epsilon=0.03 * perimeter, closed=True)
+
+        if len(approx) != 4:
+            continue
+
+        if not cv2.isContourConvex(approx):
+            continue
+
+        points = approx.reshape(4, 2).astype(np.float32)
+
+        angles = []
+
+        for j in range(0, 4):
+            p1 = points[j]
+            p2 = points[(j + 1) % 4]
+
+            dx = float(p2[0] - p1[0])
+            dy = float(p2[1] - p1[1])
+
+            angle = math.degrees(math.atan2(dy, dx))
+            angle %= 180.0
+
+            angles.append(angle)
+
+        # find angle between opposite lines of the polygon, if the difference <= 7 deg
+        pair_02_parallel = (angle_difference(angles[0], angles[2]) <= PARALLEL_TOLERANCE_DEG)
+        pair_13_parallel = (angle_difference(angles[1], angles[1]) <= PARALLEL_TOLERANCE_DEG)
+
+        # exactly one pair should be parallel, if sum of these variables != 1, then 0 or 2 pairs are parallel
+        if int(pair_02_parallel) + int(pair_13_parallel) != 1:
+            continue
+
+        corners = points.copy()
+
+        # converting coordinates from cropped image, to coordinates of the entire frame
+        corners[:, 0] += ARENA_X0
+        corners[:, 1] += ARENA_Y0
+
+        cx, cy = centre_of_quad(corners)
+
+        candidates.append((cx, cy, corners, area))
+
+    candidates.sort(key=lambda item : item[3], reverse=True)
+
+    for cx, cy, corners, area in candidates:
+        duplicate = False
+
+        for old_cx, old_cy, _ in trapezoids:
+            if math.hypot(cx - old_cx, cy - old_cy) < 25.0:
+                duplicate = True
+                break
+
+        if duplicate:
+            continue
+
+        trapezoids.append((cx, cy, corners))
+
+    for cx, cy, corners in trapezoids:
+        polygon = np.round(corners).astype(np.int32)
+
+        cv2.polylines(binary, [polygon], isClosed=True, color=255, thickness=3)
     ##################################################
 
     return binary, trapezoids
@@ -425,8 +514,29 @@ def main():
                 #   src/shape_interface/srv/PixelToWorld.srv
                 # Read it -- it tells you the exact field names.
 
-                pass
+                request = PixelToWorld.Request()
 
+                request.pixel_x = np.float64(cx)
+                request.pixel_y = np.float64(cy)
+
+                future = client.call_async(request)
+
+                rclpy.spin_until_future_complete(node, future, timeout_sec=1.0)
+
+                result = future.result()
+
+                if result is None:
+                    print(f"    pixel ({cx:7.2f}, {cy:7.2f}) -> "
+                          f"timeout")
+                elif not result.success:
+                    print(f"    pixel ({cx:7.2f}, {cy:7.2f}) -> "
+                          f"ERROR: {result.message()}")
+                else:
+                    wx = float(result.world_x)
+                    wy = float(result.world_y)
+
+                    print(f"    pixel ({cx:7.2f}, {cy:7.2f}) -> "
+                          f"world ({wx:6.3f}, {wy:6.3f}) m")
                 ##################################################
 
         if (cv2.waitKey(1) & 0xFF) == ord('q'):
