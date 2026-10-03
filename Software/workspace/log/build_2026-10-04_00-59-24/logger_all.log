@@ -1,0 +1,413 @@
+[0.118s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.118s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=6, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x708d90267250>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x708d90266ad0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x708d90266ad0>>, mixin_verb=('build',))
+[0.238s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.238s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.238s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.238s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.238s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.238s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.238s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/aayush/eYRC/Software/workspace'
+[0.238s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.238s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.238s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.238s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.238s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.238s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.238s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.238s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.238s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/hb_description) by extensions ['ignore', 'ignore_ament_install']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/hb_description) by extension 'ignore'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/hb_description) by extension 'ignore_ament_install'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/hb_description) by extensions ['colcon_pkg']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/hb_description) by extension 'colcon_pkg'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/hb_description) by extensions ['colcon_meta']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/hb_description) by extension 'colcon_meta'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/hb_description) by extensions ['ros']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/hb_description) by extension 'ros'
+[0.255s] DEBUG:colcon.colcon_core.package_identification:Package 'src/hb_description' with type 'ros.ament_cmake' and name 'hb_description'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/shape_interface) by extensions ['ignore', 'ignore_ament_install']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/shape_interface) by extension 'ignore'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/shape_interface) by extension 'ignore_ament_install'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/shape_interface) by extensions ['colcon_pkg']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/shape_interface) by extension 'colcon_pkg'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/shape_interface) by extensions ['colcon_meta']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/shape_interface) by extension 'colcon_meta'
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/shape_interface) by extensions ['ros']
+[0.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/shape_interface) by extension 'ros'
+[0.256s] DEBUG:colcon.colcon_core.package_identification:Package 'src/shape_interface' with type 'ros.ament_cmake' and name 'shape_interface'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1a) by extensions ['ignore', 'ignore_ament_install']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1a) by extension 'ignore'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1a) by extension 'ignore_ament_install'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1a) by extensions ['colcon_pkg']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1a) by extension 'colcon_pkg'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1a) by extensions ['colcon_meta']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1a) by extension 'colcon_meta'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1a) by extensions ['ros']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1a) by extension 'ros'
+[0.256s] DEBUG:colcon.colcon_core.package_identification:Package 'src/task_1a' with type 'ros.ament_cmake' and name 'task_1a'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1b) by extensions ['ignore', 'ignore_ament_install']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1b) by extension 'ignore'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1b) by extension 'ignore_ament_install'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1b) by extensions ['colcon_pkg']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1b) by extension 'colcon_pkg'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1b) by extensions ['colcon_meta']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1b) by extension 'colcon_meta'
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1b) by extensions ['ros']
+[0.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1b) by extension 'ros'
+[0.257s] DEBUG:colcon.colcon_core.package_identification:Package 'src/task_1b' with type 'ros.ament_cmake' and name 'task_1b'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1c) by extensions ['ignore', 'ignore_ament_install']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1c) by extension 'ignore'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1c) by extension 'ignore_ament_install'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1c) by extensions ['colcon_pkg']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1c) by extension 'colcon_pkg'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1c) by extensions ['colcon_meta']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1c) by extension 'colcon_meta'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1c) by extensions ['ros']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_1c) by extension 'ros'
+[0.258s] DEBUG:colcon.colcon_core.package_identification:Package 'src/task_1c' with type 'ros.ament_cmake' and name 'task_1c'
+[0.258s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.258s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.259s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.259s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.259s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.291s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.291s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.294s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 5 installed packages in /home/aayush/eYRC/Software/workspace/install
+[0.294s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 273 installed packages in /opt/ros/humble
+[0.295s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'shape_interface' build argument 'cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'shape_interface' build argument 'cmake_target' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'shape_interface' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'shape_interface' build argument 'cmake_clean_cache' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'shape_interface' build argument 'cmake_clean_first' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'shape_interface' build argument 'cmake_force_configure' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'shape_interface' build argument 'ament_cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'shape_interface' build argument 'catkin_cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'shape_interface' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.315s] DEBUG:colcon.colcon_core.verb:Building package 'shape_interface' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aayush/eYRC/Software/workspace/build/shape_interface', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aayush/eYRC/Software/workspace/install/shape_interface', 'merge_install': False, 'path': '/home/aayush/eYRC/Software/workspace/src/shape_interface', 'symlink_install': False, 'test_result_base': None}
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1b' build argument 'cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1b' build argument 'cmake_target' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1b' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1b' build argument 'cmake_clean_cache' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1b' build argument 'cmake_clean_first' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1b' build argument 'cmake_force_configure' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1b' build argument 'ament_cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1b' build argument 'catkin_cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1b' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.315s] DEBUG:colcon.colcon_core.verb:Building package 'task_1b' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aayush/eYRC/Software/workspace/build/task_1b', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aayush/eYRC/Software/workspace/install/task_1b', 'merge_install': False, 'path': '/home/aayush/eYRC/Software/workspace/src/task_1b', 'symlink_install': False, 'test_result_base': None}
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1a' build argument 'cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1a' build argument 'cmake_target' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1a' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1a' build argument 'cmake_clean_cache' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1a' build argument 'cmake_clean_first' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1a' build argument 'cmake_force_configure' from command line to 'False'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1a' build argument 'ament_cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1a' build argument 'catkin_cmake_args' from command line to 'None'
+[0.315s] Level 5:colcon.colcon_core.verb:set package 'task_1a' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.315s] DEBUG:colcon.colcon_core.verb:Building package 'task_1a' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aayush/eYRC/Software/workspace/build/task_1a', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aayush/eYRC/Software/workspace/install/task_1a', 'merge_install': False, 'path': '/home/aayush/eYRC/Software/workspace/src/task_1a', 'symlink_install': False, 'test_result_base': None}
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'task_1c' build argument 'cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'task_1c' build argument 'cmake_target' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'task_1c' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'task_1c' build argument 'cmake_clean_cache' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'task_1c' build argument 'cmake_clean_first' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'task_1c' build argument 'cmake_force_configure' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'task_1c' build argument 'ament_cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'task_1c' build argument 'catkin_cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'task_1c' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.316s] DEBUG:colcon.colcon_core.verb:Building package 'task_1c' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aayush/eYRC/Software/workspace/build/task_1c', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aayush/eYRC/Software/workspace/install/task_1c', 'merge_install': False, 'path': '/home/aayush/eYRC/Software/workspace/src/task_1c', 'symlink_install': False, 'test_result_base': None}
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'hb_description' build argument 'cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'hb_description' build argument 'cmake_target' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'hb_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'hb_description' build argument 'cmake_clean_cache' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'hb_description' build argument 'cmake_clean_first' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'hb_description' build argument 'cmake_force_configure' from command line to 'False'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'hb_description' build argument 'ament_cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'hb_description' build argument 'catkin_cmake_args' from command line to 'None'
+[0.316s] Level 5:colcon.colcon_core.verb:set package 'hb_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.316s] DEBUG:colcon.colcon_core.verb:Building package 'hb_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/aayush/eYRC/Software/workspace/build/hb_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/aayush/eYRC/Software/workspace/install/hb_description', 'merge_install': False, 'path': '/home/aayush/eYRC/Software/workspace/src/hb_description', 'symlink_install': False, 'test_result_base': None}
+[0.316s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.317s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.317s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/aayush/eYRC/Software/workspace/src/shape_interface' with build type 'ament_cmake'
+[0.317s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/aayush/eYRC/Software/workspace/src/shape_interface'
+[0.322s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.322s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.322s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.324s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/aayush/eYRC/Software/workspace/src/task_1b' with build type 'ament_cmake'
+[0.324s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/aayush/eYRC/Software/workspace/src/task_1b'
+[0.324s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.324s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.329s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aayush/eYRC/Software/workspace/build/shape_interface': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/shape_interface -- -j6 -l6
+[0.331s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aayush/eYRC/Software/workspace/build/task_1b': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/task_1b -- -j6 -l6
+[0.570s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aayush/eYRC/Software/workspace/build/task_1b' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/task_1b -- -j6 -l6
+[0.579s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aayush/eYRC/Software/workspace/build/task_1b': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/task_1b
+[0.612s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(task_1b)
+[0.612s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aayush/eYRC/Software/workspace/build/task_1b' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/task_1b
+[0.616s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b' for CMake module files
+[0.617s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b' for CMake config files
+[0.617s] Level 1:colcon.colcon_core.shell:create_environment_hook('task_1b', 'cmake_prefix_path')
+[0.618s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/hook/cmake_prefix_path.ps1'
+[0.618s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/hook/cmake_prefix_path.dsv'
+[0.619s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/hook/cmake_prefix_path.sh'
+[0.619s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b/lib'
+[0.620s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b/bin'
+[0.620s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b/lib/pkgconfig/task_1b.pc'
+[0.620s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b/lib/python3.10/site-packages'
+[0.620s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b/bin'
+[0.621s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/package.ps1'
+[0.622s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/package.dsv'
+[0.622s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/package.sh'
+[0.623s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/package.bash'
+[0.623s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/package.zsh'
+[0.624s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aayush/eYRC/Software/workspace/install/task_1b/share/colcon-core/packages/task_1b)
+[0.625s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(task_1b)
+[0.625s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b' for CMake module files
+[0.625s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b' for CMake config files
+[0.625s] Level 1:colcon.colcon_core.shell:create_environment_hook('task_1b', 'cmake_prefix_path')
+[0.626s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/hook/cmake_prefix_path.ps1'
+[0.626s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/hook/cmake_prefix_path.dsv'
+[0.626s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/hook/cmake_prefix_path.sh'
+[0.627s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b/lib'
+[0.627s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b/bin'
+[0.627s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b/lib/pkgconfig/task_1b.pc'
+[0.627s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b/lib/python3.10/site-packages'
+[0.628s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1b/bin'
+[0.628s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/package.ps1'
+[0.629s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/package.dsv'
+[0.629s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/package.sh'
+[0.629s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/package.bash'
+[0.630s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1b/share/task_1b/package.zsh'
+[0.630s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aayush/eYRC/Software/workspace/install/task_1b/share/colcon-core/packages/task_1b)
+[0.683s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aayush/eYRC/Software/workspace/build/shape_interface' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/shape_interface -- -j6 -l6
+[0.683s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aayush/eYRC/Software/workspace/build/shape_interface': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/shape_interface
+[0.742s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(shape_interface)
+[0.743s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface' for CMake module files
+[0.743s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aayush/eYRC/Software/workspace/build/shape_interface' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/shape_interface
+[0.743s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface' for CMake config files
+[0.743s] Level 1:colcon.colcon_core.shell:create_environment_hook('shape_interface', 'cmake_prefix_path')
+[0.744s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/cmake_prefix_path.ps1'
+[0.744s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/cmake_prefix_path.dsv'
+[0.744s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/cmake_prefix_path.sh'
+[0.744s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface/lib'
+[0.744s] Level 1:colcon.colcon_core.shell:create_environment_hook('shape_interface', 'ld_library_path_lib')
+[0.745s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/ld_library_path_lib.ps1'
+[0.745s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/ld_library_path_lib.dsv'
+[0.745s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/ld_library_path_lib.sh'
+[0.745s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface/bin'
+[0.745s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface/lib/pkgconfig/shape_interface.pc'
+[0.745s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface/lib/python3.10/site-packages'
+[0.746s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface/bin'
+[0.746s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/package.ps1'
+[0.746s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/package.dsv'
+[0.746s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/package.sh'
+[0.747s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/package.bash'
+[0.747s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/package.zsh'
+[0.747s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aayush/eYRC/Software/workspace/install/shape_interface/share/colcon-core/packages/shape_interface)
+[0.747s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(shape_interface)
+[0.747s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface' for CMake module files
+[0.748s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface' for CMake config files
+[0.748s] Level 1:colcon.colcon_core.shell:create_environment_hook('shape_interface', 'cmake_prefix_path')
+[0.748s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/cmake_prefix_path.ps1'
+[0.748s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/cmake_prefix_path.dsv'
+[0.748s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/cmake_prefix_path.sh'
+[0.749s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface/lib'
+[0.749s] Level 1:colcon.colcon_core.shell:create_environment_hook('shape_interface', 'ld_library_path_lib')
+[0.749s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/ld_library_path_lib.ps1'
+[0.749s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/ld_library_path_lib.dsv'
+[0.750s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/hook/ld_library_path_lib.sh'
+[0.750s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface/bin'
+[0.750s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface/lib/pkgconfig/shape_interface.pc'
+[0.750s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface/lib/python3.10/site-packages'
+[0.751s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/shape_interface/bin'
+[0.751s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/package.ps1'
+[0.752s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/package.dsv'
+[0.752s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/package.sh'
+[0.753s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/package.bash'
+[0.753s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/shape_interface/share/shape_interface/package.zsh'
+[0.754s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aayush/eYRC/Software/workspace/install/shape_interface/share/colcon-core/packages/shape_interface)
+[0.754s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/aayush/eYRC/Software/workspace/src/task_1a' with build type 'ament_cmake'
+[0.754s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/aayush/eYRC/Software/workspace/src/task_1a'
+[0.754s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.755s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.759s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/aayush/eYRC/Software/workspace/src/task_1c' with build type 'ament_cmake'
+[0.759s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/aayush/eYRC/Software/workspace/src/task_1c'
+[0.760s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.760s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.768s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aayush/eYRC/Software/workspace/build/task_1a': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/home/aayush/eYRC/Software/workspace/install/task_1a:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/task_1a -- -j6 -l6
+[0.774s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aayush/eYRC/Software/workspace/build/task_1c': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/home/aayush/eYRC/Software/workspace/install/task_1a:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/task_1c -- -j6 -l6
+[0.821s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aayush/eYRC/Software/workspace/build/task_1c' returned '0': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/home/aayush/eYRC/Software/workspace/install/task_1a:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/task_1c -- -j6 -l6
+[0.825s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aayush/eYRC/Software/workspace/build/task_1c': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/home/aayush/eYRC/Software/workspace/install/task_1a:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/task_1c
+[0.844s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(task_1c)
+[0.844s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c' for CMake module files
+[0.844s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aayush/eYRC/Software/workspace/build/task_1c' returned '0': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/home/aayush/eYRC/Software/workspace/install/task_1a:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/task_1c
+[0.845s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c' for CMake config files
+[0.845s] Level 1:colcon.colcon_core.shell:create_environment_hook('task_1c', 'cmake_prefix_path')
+[0.845s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/hook/cmake_prefix_path.ps1'
+[0.846s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/hook/cmake_prefix_path.dsv'
+[0.847s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/hook/cmake_prefix_path.sh'
+[0.848s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c/lib'
+[0.848s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c/bin'
+[0.848s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c/lib/pkgconfig/task_1c.pc'
+[0.848s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c/lib/python3.10/site-packages'
+[0.848s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c/bin'
+[0.849s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/package.ps1'
+[0.850s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/package.dsv'
+[0.850s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/package.sh'
+[0.851s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/package.bash'
+[0.851s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/package.zsh'
+[0.852s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aayush/eYRC/Software/workspace/install/task_1c/share/colcon-core/packages/task_1c)
+[0.854s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(task_1c)
+[0.854s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c' for CMake module files
+[0.854s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c' for CMake config files
+[0.855s] Level 1:colcon.colcon_core.shell:create_environment_hook('task_1c', 'cmake_prefix_path')
+[0.855s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/hook/cmake_prefix_path.ps1'
+[0.856s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/hook/cmake_prefix_path.dsv'
+[0.857s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/hook/cmake_prefix_path.sh'
+[0.861s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c/lib'
+[0.861s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c/bin'
+[0.861s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c/lib/pkgconfig/task_1c.pc'
+[0.862s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c/lib/python3.10/site-packages'
+[0.862s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1c/bin'
+[0.863s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/package.ps1'
+[0.869s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/package.dsv'
+[0.870s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/package.sh'
+[0.871s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/package.bash'
+[0.871s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1c/share/task_1c/package.zsh'
+[0.872s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aayush/eYRC/Software/workspace/install/task_1c/share/colcon-core/packages/task_1c)
+[1.038s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aayush/eYRC/Software/workspace/build/task_1a' returned '0': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/home/aayush/eYRC/Software/workspace/install/task_1a:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/task_1a -- -j6 -l6
+[1.039s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aayush/eYRC/Software/workspace/build/task_1a': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/home/aayush/eYRC/Software/workspace/install/task_1a:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/task_1a
+[1.100s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(task_1a)
+[1.101s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a' for CMake module files
+[1.101s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aayush/eYRC/Software/workspace/build/task_1a' returned '0': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/home/aayush/eYRC/Software/workspace/install/task_1a:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/task_1a
+[1.101s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a' for CMake config files
+[1.102s] Level 1:colcon.colcon_core.shell:create_environment_hook('task_1a', 'cmake_prefix_path')
+[1.102s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/hook/cmake_prefix_path.ps1'
+[1.102s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/hook/cmake_prefix_path.dsv'
+[1.103s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/hook/cmake_prefix_path.sh'
+[1.103s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a/lib'
+[1.103s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a/bin'
+[1.103s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a/lib/pkgconfig/task_1a.pc'
+[1.104s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a/lib/python3.10/site-packages'
+[1.104s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a/bin'
+[1.104s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.ps1'
+[1.105s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.dsv'
+[1.105s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.sh'
+[1.106s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.bash'
+[1.106s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.zsh'
+[1.106s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aayush/eYRC/Software/workspace/install/task_1a/share/colcon-core/packages/task_1a)
+[1.107s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(task_1a)
+[1.107s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a' for CMake module files
+[1.108s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a' for CMake config files
+[1.108s] Level 1:colcon.colcon_core.shell:create_environment_hook('task_1a', 'cmake_prefix_path')
+[1.108s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/hook/cmake_prefix_path.ps1'
+[1.108s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/hook/cmake_prefix_path.dsv'
+[1.109s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/hook/cmake_prefix_path.sh'
+[1.109s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a/lib'
+[1.109s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a/bin'
+[1.109s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a/lib/pkgconfig/task_1a.pc'
+[1.110s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a/lib/python3.10/site-packages'
+[1.110s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/task_1a/bin'
+[1.110s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.ps1'
+[1.111s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.dsv'
+[1.111s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.sh'
+[1.112s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.bash'
+[1.112s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/task_1a/share/task_1a/package.zsh'
+[1.113s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aayush/eYRC/Software/workspace/install/task_1a/share/colcon-core/packages/task_1a)
+[1.113s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/aayush/eYRC/Software/workspace/src/hb_description' with build type 'ament_cmake'
+[1.113s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/aayush/eYRC/Software/workspace/src/hb_description'
+[1.114s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.114s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.125s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aayush/eYRC/Software/workspace/build/hb_description': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/task_1a:/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/hb_description -- -j6 -l6
+[1.164s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aayush/eYRC/Software/workspace/build/hb_description' returned '0': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/task_1a:/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/hb_description -- -j6 -l6
+[1.165s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/aayush/eYRC/Software/workspace/build/hb_description': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/task_1a:/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/hb_description
+[1.177s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(hb_description)
+[1.177s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description' for CMake module files
+[1.178s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/aayush/eYRC/Software/workspace/build/hb_description' returned '0': CMAKE_PREFIX_PATH=/home/aayush/eYRC/Software/workspace/install/task_1a:/home/aayush/eYRC/Software/workspace/install/shape_interface:/home/aayush/eYRC/Software/workspace/install/task_1c:/home/aayush/eYRC/Software/workspace/install/task_1b:/home/aayush/eYRC/Software/workspace/install/hb_description:/opt/ros/humble LD_LIBRARY_PATH=/home/aayush/eYRC/Software/workspace/install/shape_interface/lib:/home/aayush/eYRC/Software/workspace/install/hb_description/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/mujoco/lib /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/hb_description
+[1.178s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description' for CMake config files
+[1.178s] Level 1:colcon.colcon_core.shell:create_environment_hook('hb_description', 'cmake_prefix_path')
+[1.179s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/cmake_prefix_path.ps1'
+[1.179s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/cmake_prefix_path.dsv'
+[1.179s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/cmake_prefix_path.sh'
+[1.180s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description/lib'
+[1.180s] Level 1:colcon.colcon_core.shell:create_environment_hook('hb_description', 'ld_library_path_lib')
+[1.180s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/ld_library_path_lib.ps1'
+[1.181s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/ld_library_path_lib.dsv'
+[1.181s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/ld_library_path_lib.sh'
+[1.181s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description/bin'
+[1.181s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description/lib/pkgconfig/hb_description.pc'
+[1.182s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description/lib/python3.10/site-packages'
+[1.182s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description/bin'
+[1.182s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/package.ps1'
+[1.183s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/package.dsv'
+[1.183s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/package.sh'
+[1.184s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/package.bash'
+[1.184s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/package.zsh'
+[1.184s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aayush/eYRC/Software/workspace/install/hb_description/share/colcon-core/packages/hb_description)
+[1.185s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(hb_description)
+[1.185s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description' for CMake module files
+[1.186s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description' for CMake config files
+[1.186s] Level 1:colcon.colcon_core.shell:create_environment_hook('hb_description', 'cmake_prefix_path')
+[1.186s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/cmake_prefix_path.ps1'
+[1.187s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/cmake_prefix_path.dsv'
+[1.187s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/cmake_prefix_path.sh'
+[1.187s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description/lib'
+[1.187s] Level 1:colcon.colcon_core.shell:create_environment_hook('hb_description', 'ld_library_path_lib')
+[1.188s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/ld_library_path_lib.ps1'
+[1.188s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/ld_library_path_lib.dsv'
+[1.188s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/hook/ld_library_path_lib.sh'
+[1.189s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description/bin'
+[1.189s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description/lib/pkgconfig/hb_description.pc'
+[1.189s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description/lib/python3.10/site-packages'
+[1.189s] Level 1:colcon.colcon_core.environment:checking '/home/aayush/eYRC/Software/workspace/install/hb_description/bin'
+[1.190s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/package.ps1'
+[1.191s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/package.dsv'
+[1.191s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/package.sh'
+[1.192s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/package.bash'
+[1.192s] INFO:colcon.colcon_core.shell:Creating package script '/home/aayush/eYRC/Software/workspace/install/hb_description/share/hb_description/package.zsh'
+[1.193s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/aayush/eYRC/Software/workspace/install/hb_description/share/colcon-core/packages/hb_description)
+[1.193s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.193s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.193s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.194s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.197s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.197s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.197s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.209s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.209s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aayush/eYRC/Software/workspace/install/local_setup.ps1'
+[1.210s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/aayush/eYRC/Software/workspace/install/_local_setup_util_ps1.py'
+[1.213s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aayush/eYRC/Software/workspace/install/setup.ps1'
+[1.215s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aayush/eYRC/Software/workspace/install/local_setup.sh'
+[1.216s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/aayush/eYRC/Software/workspace/install/_local_setup_util_sh.py'
+[1.217s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aayush/eYRC/Software/workspace/install/setup.sh'
+[1.218s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aayush/eYRC/Software/workspace/install/local_setup.bash'
+[1.219s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aayush/eYRC/Software/workspace/install/setup.bash'
+[1.220s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/aayush/eYRC/Software/workspace/install/local_setup.zsh'
+[1.220s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/aayush/eYRC/Software/workspace/install/setup.zsh'

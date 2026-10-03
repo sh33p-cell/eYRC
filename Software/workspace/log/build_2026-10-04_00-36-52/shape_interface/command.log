@@ -1,0 +1,4 @@
+Invoking command in '/home/aayush/eYRC/Software/workspace/build/shape_interface': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/shape_interface -- -j6 -l6
+Invoked command in '/home/aayush/eYRC/Software/workspace/build/shape_interface' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/aayush/eYRC/Software/workspace/build/shape_interface -- -j6 -l6
+Invoking command in '/home/aayush/eYRC/Software/workspace/build/shape_interface': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/shape_interface
+Invoked command in '/home/aayush/eYRC/Software/workspace/build/shape_interface' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/aayush/eYRC/Software/workspace/build/shape_interface

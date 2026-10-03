@@ -2,5 +2,5 @@
 ./.venv/
 ./Software/workspace/build/
 ./Software/workspace/install/
-./Software/workspace/log//
+./Software/workspace/log/
 ./.idea/
