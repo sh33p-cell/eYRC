@@ -1,0 +1,258 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-1b6625a615aa137ceeab.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						17,
+						18
+					]
+				},
+				{
+					"build" : "shape_interface__py",
+					"jsonFile" : "directory-shape_interface__py-10265db875823e6b4dcf.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/shape_interface/shape_interface__py",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "shape_interface__rs",
+					"jsonFile" : "directory-shape_interface__rs-c4db4fbcf894bda85843.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/shape_interface/shape_interface__rs",
+					"targetIndexes" : 
+					[
+						16
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "shape_interface",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_shape_interface_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_shape_interface_egg-52ebaa2d865b0bd9a200.json",
+					"name" : "ament_cmake_python_build_shape_interface_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_shape_interface::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_shape_interface-4bd9ee6703b6666a00cb.json",
+					"name" : "ament_cmake_python_copy_shape_interface",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface-63d8ebb74580abaa9c63.json",
+					"name" : "shape_interface",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__cpp-5316b60aea28b28925e1.json",
+					"name" : "shape_interface__cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "shape_interface__py::@af815a81e6d949ed7294",
+					"jsonFile" : "target-shape_interface__py-79be4c5286db5f87c72c.json",
+					"name" : "shape_interface__py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_generator_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_generator_c-2a33a546e6787c254247.json",
+					"name" : "shape_interface__rosidl_generator_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_generator_py::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_generator_py-5ee6174f1fa9f32b1cc8.json",
+					"name" : "shape_interface__rosidl_generator_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_typesupport_c-a443a2986112a7972933.json",
+					"name" : "shape_interface__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_typesupport_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_typesupport_c__pyext-af3c032b196f23acbb27.json",
+					"name" : "shape_interface__rosidl_typesupport_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_typesupport_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_typesupport_cpp-2261cf2804dfaba980df.json",
+					"name" : "shape_interface__rosidl_typesupport_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_typesupport_fastrtps_c-25ffcf903b94ed507a0d.json",
+					"name" : "shape_interface__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_typesupport_fastrtps_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_typesupport_fastrtps_c__pyext-4b38a854d7f64162b2c1.json",
+					"name" : "shape_interface__rosidl_typesupport_fastrtps_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_typesupport_fastrtps_cpp-f316edf75356cf9966f9.json",
+					"name" : "shape_interface__rosidl_typesupport_fastrtps_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_typesupport_introspection_c-d616cb6359f0aa6239a7.json",
+					"name" : "shape_interface__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_typesupport_introspection_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_typesupport_introspection_c__pyext-6006c8eac53f9361fb61.json",
+					"name" : "shape_interface__rosidl_typesupport_introspection_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface__rosidl_typesupport_introspection_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface__rosidl_typesupport_introspection_cpp-17f2439c7f4805ebe515.json",
+					"name" : "shape_interface__rosidl_typesupport_introspection_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "shape_interface__rs::@fba46164e801a9f1a8c4",
+					"jsonFile" : "target-shape_interface__rs-66e3ffc5eda04f9e0dc4.json",
+					"name" : "shape_interface__rs",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shape_interface_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shape_interface_uninstall-41fee83c2c72705fed11.json",
+					"name" : "shape_interface_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-91cc7de20a4513afff38.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/shape_interface",
+		"source" : "/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/src/shape_interface"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

@@ -1,0 +1,9 @@
+/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/task_1c/CMakeFiles/uninstall.dir
+/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/task_1c/CMakeFiles/task_1c_uninstall.dir
+/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/task_1c/CMakeFiles/test.dir
+/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/task_1c/CMakeFiles/edit_cache.dir
+/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/task_1c/CMakeFiles/rebuild_cache.dir
+/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/task_1c/CMakeFiles/list_install_components.dir
+/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/task_1c/CMakeFiles/install.dir
+/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/task_1c/CMakeFiles/install/local.dir
+/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/build/task_1c/CMakeFiles/install/strip.dir
