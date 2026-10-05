@@ -1,6 +1,6 @@
-./Software/workspace/src/task_1a/task_1a/camera_detection_task1a_ready.py
-./.venv/
-./Software/workspace/build/
-./Software/workspace/install/
-./Software/workspace/log/
-./.idea/
+Software/workspace/src/task_1a/task_1a/camera_detection_task1a_ready.py
+.venv/
+Software/workspace/build/
+Software/workspace/install/
+Software/workspace/log/
+.idea/
