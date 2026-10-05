@@ -1,8 +1,0 @@
-{
-  "package_name": "shape_interface",
-  "non_idl_tuples": [
-    "/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/src/shape_interface:srv/GetShape.srv",
-    "/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/src/shape_interface:srv/PixelToWorld.srv",
-    "/home/p1kachu/eYRC_26-27_Hola-The-Explorer/Software/workspace/src/shape_interface:msg/Shape.msg"
-  ]
-}
