@@ -191,55 +191,35 @@ class ShapeController(Node):
         distance = math.hypot(dx, dy)
 
         if distance < WAYPOINT_TOLERANCE:
-
             self.wp_index += 1
-
             self.integral_ex = 0.0
             self.integral_ey = 0.0
-            self.prev_ex = 0.0
+            self.prev_ex = 0.0                #after reaching the waypoints the errors will become zero
             self.prev_ey = 0.0
 
             if self.wp_index >= len(self.waypoints):
                 self.done = True
-                self._publish([0.0, 0.0, 0.0])
+                self._publish([0.0, 0.0, 0.0])   #to stop things totally
                 return
 
             return
 
-        self.integral_ex += dx * CONTROL_PERIOD
+        self.integral_ex += dx * CONTROL_PERIOD            #to find integral that is  summation of dx with every control period of time
         self.integral_ey += dy * CONTROL_PERIOD
 
         derivative_ex = (dx - self.prev_ex) / CONTROL_PERIOD
-        derivative_ey = (dy - self.prev_ey) / CONTROL_PERIOD
+        derivative_ey = (dy - self.prev_ey) / CONTROL_PERIOD      # same as intergral (the derivative)
 
-        output_x = (
-            POSITION_KP * dx
-            + POSITION_KI * self.integral_ex
-            + POSITION_KD * derivative_ex
-        )   
+        output_x = (POSITION_KP * dx + POSITION_KI * self.integral_ex + POSITION_KD * derivative_ex)   
+        output_y = (POSITION_KP * dy + POSITION_KI * self.integral_ey + POSITION_KD * derivative_ey)    # this is w.r.t world corrdinates
 
-        output_y = (
-            POSITION_KP * dy
-            + POSITION_KI * self.integral_ey
-            + POSITION_KD * derivative_ey
-        )
-
-        self.prev_ex = dx
+        self.prev_ex = dx 
         self.prev_ey = dy
 
-
-        # speed = math.hypot(output_x, output_y)
-
-        # if speed > self.speed:
-        #     output_x = output_x * self.speed / speed
-        #     output_y = output_y * self.speed / speed
-
-
-        body_x = (math.cos(yaw) * output_x + math.sin(yaw) * output_y)
-
+        body_x = (math.cos(yaw) * output_x + math.sin(yaw) * output_y)         #corrected according to body
         body_y = (-math.sin(yaw) * output_x + math.cos(yaw) * output_y)
 
-        self._publish(body_to_wheels(body_x,body_y,0.0))
+        self._publish(body_to_wheels(body_x,body_y,0.0))               #publishing the velocities (it is working without wz as there is no target wz)
 
 
 
