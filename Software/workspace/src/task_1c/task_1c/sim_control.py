@@ -26,11 +26,11 @@ _WHEEL_TO_BODY = np.array([
     [1.0, 1.0, 1.0]
 ])
 _BODY_TO_WHEEL = np.linalg.inv(_WHEEL_TO_BODY)
-_CTRL_LIMIT = 0.25      # rad/s, matches lekiwi.xml actuator ctrlrange
+_CTRL_LIMIT = 3.14      # rad/s, matches lekiwi.xml actuator ctrlrange
 
 WAYPOINT_TOLERANCE = 0.005   # metres
 CIRCLE_SEGMENTS     = 36
-POSITION_KP         = 10.0
+POSITION_KP         = 5.0
 POSITION_KD         = 0.0  # added new
 POSITION_KI         = 0.0   #added new
 YAW_HOLD_KP         = 0.0
@@ -48,7 +48,7 @@ def body_to_wheels(vx, vy, wz):
         [np.cos(270), np.sin(270), 1]
     ])
     wheel_speeds = (M_inv @ X)
-
+    #wheel_speeds = np.clip(wheel_speeds,-(_CTRL_LIMIT),_CTRL_LIMIT)
     return list(wheel_speeds)
 
 
@@ -133,7 +133,7 @@ class ShapeController(Node):
             CONTROL_PERIOD,
             self._control_step
         )
-    
+
     def _request_shape(self):
         client = self.create_client(GetShape, "get_shape")
         while not client.wait_for_service(timeout_sec=2.0):
@@ -173,14 +173,18 @@ class ShapeController(Node):
         # wp_index on arrival (within WAYPOINT_TOLERANCE), set self.done
         # and stop when all waypoints are reached, then call
         # self._publish(body_to_wheels(vx, vy, wz)) each step.
-        
+
 
         x, y, yaw = self.pose
         target_x, target_y = self.waypoints[self.wp_index]            
         dx = target_x - x
         dy = target_y - y
-        output_x = (POSITION_KP * dx)/(self.speed)
-        output_y = (POSITION_KP * dy)/(self.speed)
+        output_x = (POSITION_KP * dx)
+        output_y = (POSITION_KP * dy)
+        
+        body_x = math.cos(yaw) * output_x + math.sin(yaw) * output_y
+        body_y = -math.sin(yaw) * output_x + math.cos(yaw) * output_y
+
         distance = math.hypot(dx, dy)
         if distance < WAYPOINT_TOLERANCE:
             self.wp_index += 1
@@ -192,8 +196,8 @@ class ShapeController(Node):
             return
 
 
-        self._publish(body_to_wheels(output_x,output_y,0.0))
-        
+        self._publish(body_to_wheels(body_x,body_y,0.0))
+
 
 
 def main():
