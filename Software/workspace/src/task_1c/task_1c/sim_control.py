@@ -21,18 +21,26 @@ from shape_interface.srv import GetShape
 # Wheel <-> body-velocity mapping, columns are [left, right, back] wheel
 # speed (rad/s); rows are body frame [vx, vy, wz] per unit wheel speed.
 _WHEEL_TO_BODY = np.array([
-    [-0.5, -0.5, 1.0],
-    [np.sqrt(3)/2, -np.sqrt(3)/2, 0.0],
-    [1.0, 1.0, 1.0]
-])
-_BODY_TO_WHEEL = np.linalg.inv(_WHEEL_TO_BODY)
-_CTRL_LIMIT = 3.14      # rad/s, matches lekiwi.xml actuator ctrlrange
+        [np.cos(np.radians(30)),
+         np.cos(np.radians(150)),
+         np.cos(np.radians(270))],
 
-WAYPOINT_TOLERANCE = 0.005   # metres
+        [np.sin(np.radians(30)),
+         np.sin(np.radians(150)),
+         np.sin(np.radians(270))],
+
+        [1,
+         1,
+         1]
+    ])
+_BODY_TO_WHEEL = np.linalg.inv(_WHEEL_TO_BODY)
+_CTRL_LIMIT = 3.14     # rad/s, matches lekiwi.xml actuator ctrlrange
+
+WAYPOINT_TOLERANCE = 0.05   # metres(given by eytr team in discuss form)
 CIRCLE_SEGMENTS     = 36
-POSITION_KP         = 5.0
-POSITION_KD         = 0.0  # added new
-POSITION_KI         = 0.0   #added new
+POSITION_KP         = 30.0
+POSITION_KD         = 6.0  # added new
+POSITION_KI         = 0.0   # added new
 YAW_HOLD_KP         = 0.0
 CONTROL_PERIOD      = 0.02  
 
@@ -43,12 +51,12 @@ def body_to_wheels(vx, vy, wz):
 
     X = np.array([vx, vy, wz])
     M_inv = np.array([
-        [np.cos(30), np.sin(30), 1],
-        [np.cos(150), np.sin(150), 1],
-        [np.cos(270), np.sin(270), 1]
+        [np.cos(np.radians(30)), np.sin(np.radians(30)), 1],
+        [np.cos(np.radians(150)), np.sin(np.radians(150)), 1],
+        [np.cos(np.radians(270)), np.sin(np.radians(270)), 1]
     ])
     wheel_speeds = (M_inv @ X)
-    #wheel_speeds = np.clip(wheel_speeds,-(_CTRL_LIMIT),_CTRL_LIMIT)
+    wheel_speeds = np.clip(wheel_speeds,-(_CTRL_LIMIT),_CTRL_LIMIT)
     return list(wheel_speeds)
 
 
@@ -116,6 +124,10 @@ class ShapeController(Node):
         self.wp_index = 0            #this is where next waypoint is
         self.done = False
         self.waypoints = self._request_shape()[1]                #_request_shape give two things that is first shape name second the list of waypoints 
+        self.integral_ex = 0.0
+        self.integral_ey = 0.0
+        self.prev_ex = 0.0
+        self.prev_ey = 0.0
 #Add the publsiher and subscriber scripts
         self.cmd_pub = self.create_publisher(
             Float64MultiArray,
@@ -169,32 +181,63 @@ class ShapeController(Node):
         if self.done or self.pose is None:
             return
 
-        # TODO: drive toward self.waypoints[self.wp_index], advance
-        # wp_index on arrival (within WAYPOINT_TOLERANCE), set self.done
-        # and stop when all waypoints are reached, then call
-        # self._publish(body_to_wheels(vx, vy, wz)) each step.
-
-
         x, y, yaw = self.pose
-        target_x, target_y = self.waypoints[self.wp_index]            
+
+        target_x, target_y = self.waypoints[self.wp_index]
+
         dx = target_x - x
         dy = target_y - y
-        output_x = (POSITION_KP * dx)
-        output_y = (POSITION_KP * dy)
-        
-        body_x = math.cos(yaw) * output_x + math.sin(yaw) * output_y
-        body_y = -math.sin(yaw) * output_x + math.cos(yaw) * output_y
 
         distance = math.hypot(dx, dy)
+
         if distance < WAYPOINT_TOLERANCE:
+
             self.wp_index += 1
+
+            self.integral_ex = 0.0
+            self.integral_ey = 0.0
+            self.prev_ex = 0.0
+            self.prev_ey = 0.0
 
             if self.wp_index >= len(self.waypoints):
                 self.done = True
                 self._publish([0.0, 0.0, 0.0])
                 return
+
             return
 
+        self.integral_ex += dx * CONTROL_PERIOD
+        self.integral_ey += dy * CONTROL_PERIOD
+
+        derivative_ex = (dx - self.prev_ex) / CONTROL_PERIOD
+        derivative_ey = (dy - self.prev_ey) / CONTROL_PERIOD
+
+        output_x = (
+            POSITION_KP * dx
+            + POSITION_KI * self.integral_ex
+            + POSITION_KD * derivative_ex
+        )   
+
+        output_y = (
+            POSITION_KP * dy
+            + POSITION_KI * self.integral_ey
+            + POSITION_KD * derivative_ey
+        )
+
+        self.prev_ex = dx
+        self.prev_ey = dy
+
+
+        # speed = math.hypot(output_x, output_y)
+
+        # if speed > self.speed:
+        #     output_x = output_x * self.speed / speed
+        #     output_y = output_y * self.speed / speed
+
+
+        body_x = (math.cos(yaw) * output_x + math.sin(yaw) * output_y)
+
+        body_y = (-math.sin(yaw) * output_x + math.cos(yaw) * output_y)
 
         self._publish(body_to_wheels(body_x,body_y,0.0))
 
