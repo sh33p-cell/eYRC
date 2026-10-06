@@ -36,13 +36,13 @@ _WHEEL_TO_BODY = np.array([
 _BODY_TO_WHEEL = np.linalg.inv(_WHEEL_TO_BODY)
 _CTRL_LIMIT = 3.14     # rad/s, matches lekiwi.xml actuator ctrlrange
 
-WAYPOINT_TOLERANCE = 0.05   # metres(given by eytr team in discuss form)
-CIRCLE_SEGMENTS     = 36
-POSITION_KP         = 30.0
-POSITION_KD         = 6.0  # added new
-POSITION_KI         = 0.0   # added new
-YAW_HOLD_KP         = 0.0
-CONTROL_PERIOD      = 0.02  
+WAYPOINT_TOLERANCE = 0.04   # metres(given by eytr team in discuss form)
+CIRCLE_SEGMENTS     = 36    
+POSITION_KP         = 25.0  # the propotional constant (P)
+POSITION_KD         = 5.0  # the derivative constant (D)
+POSITION_KI         = 5.0   # the integral constant (I)
+YAW_HOLD_KP         = 3.0   # propstional constant for yaw(P of yaw)
+CONTROL_PERIOD      = 0.02    # how frequently the control step is being called
 
 def body_to_wheels(vx, vy, wz):
     """Body-frame (vx, vy, wz) -> wheel angular velocities [left, right, back]."""
@@ -219,7 +219,13 @@ class ShapeController(Node):
         body_x = (math.cos(yaw) * output_x + math.sin(yaw) * output_y)         #corrected according to body
         body_y = (-math.sin(yaw) * output_x + math.cos(yaw) * output_y)
 
-        self._publish(body_to_wheels(body_x,body_y,0.0))               #publishing the velocities (it is working without wz as there is no target wz)
+
+        #yaw hold kp
+        target_yaw = self.start_pose[2]
+        dyaw = target_yaw - yaw
+        output_yaw = YAW_HOLD_KP * dyaw
+
+        self._publish(body_to_wheels(body_x,body_y,output_yaw))               #publishing the velocities (it is working without wz as there is no target wz)
 
 
 
