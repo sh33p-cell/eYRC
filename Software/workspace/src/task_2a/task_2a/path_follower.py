@@ -74,7 +74,7 @@ SETTLE_TICKS = 0              # ticks in a row inside GOAL_TOLERANCE = arrived
 # ----------------------------------------------------- robot (same as Task 1B)
 WHEEL_RADIUS_M = 0.0255       # m
 CHASSIS_RADIUS_M = 0.06412    # m, chassis centre to each wheel's axle
-WHEEL_ANGLES_RAD = np.radians([0.0, 0.0, 0.0])   # TODO: from Task 1B, [left, right, back]
+WHEEL_ANGLES_RAD = np.radians([30.0, 150.0, 270.0])   # TODO: from Task 1B, [left, right, back]
 IK_MATRIX = np.zeros((3, 3))                     # TODO: from Task 1B
 _CTRL_LIMIT = 30.0            # rad/s, the wheels' ctrlrange in the robot's MJCF:
                               # faster commands are clamped by the simulation
@@ -86,7 +86,24 @@ def body_velocity_to_wheel_speeds(vx, vy, w):
     """Body twist (vx, vy, w) -> wheel speeds [left, right, back], rad/s."""
     ##############  ADD YOUR CODE HERE  ##############
     # TODO: Task 1B
-    pass
+    WHEEL_TO_BODY = np.array([
+        [np.cos(WHEEL_ANGLES_RAD[0]),
+         np.cos(WHEEL_ANGLES_RAD[1]),
+         np.cos(WHEEL_ANGLES_RAD[2])],
+   
+        [np.sin(WHEEL_ANGLES_RAD[0]),
+         np.sin(WHEEL_ANGLES_RAD[1]),
+         np.sin(WHEEL_ANGLES_RAD[2])],
+    
+        [CHASSIS_RADIUS_M,
+         CHASSIS_RADIUS_M,
+         CHASSIS_RADIUS_M]
+        ])
+    
+    BODY_TO_WHEEL = np.linalg.inv(WHEEL_TO_BODY)
+    X = np.array([vx, vy, w])
+    wheel_speeds = (BODY_TO_WHEEL @ X) / WHEEL_RADIUS_M
+    return wheel_speeds
     ##################################################
 
 
@@ -96,7 +113,28 @@ def body_to_wheels(vx, vy, wz):
     ##############  ADD YOUR CODE HERE  ##############
     # TODO: Task 1C. Scale all three wheels down together, do not clip each
     # one: clipping changes the direction the robot drives in.
-    pass
+    X = np.array([vx, vy, wz])
+    M_inv = np.array([
+        [np.cos(np.radians(30)), np.sin(np.radians(30)), 1],
+        [np.cos(np.radians(150)), np.sin(np.radians(150)), 1],
+        [np.cos(np.radians(270)), np.sin(np.radians(270)), 1]
+    ])
+    wheel_speeds = (M_inv @ X)
+
+    if(abs(wheel_speeds[0]) > _CTRL_LIMIT):
+        wheel_speeds[0]=_CTRL_LIMIT
+        wheel_speeds[1]= wheel_speeds[1]*(_CTRL_LIMIT/wheel_speeds[0])
+        wheel_speeds[2]= wheel_speeds[2]*(_CTRL_LIMIT/wheel_speeds[0])
+
+    if(abs(wheel_speeds[1]) > _CTRL_LIMIT):
+            wheel_speeds[1]=_CTRL_LIMIT
+            wheel_speeds[0]= wheel_speeds[0]*(_CTRL_LIMIT/wheel_speeds[1])
+            wheel_speeds[2]= wheel_speeds[2]*(_CTRL_LIMIT/wheel_speeds[1])
+    if(abs(wheel_speeds[2]) > _CTRL_LIMIT):
+            wheel_speeds[2]=_CTRL_LIMIT
+            wheel_speeds[1]= wheel_speeds[1]*(_CTRL_LIMIT/wheel_speeds[2])
+            wheel_speeds[0]= wheel_speeds[0]*(_CTRL_LIMIT/wheel_speeds[2])
+    return list(wheel_speeds)
     ##################################################
 
 
@@ -104,7 +142,7 @@ def yaw_from_quat(w, x, y, z):
     """Quaternion -> yaw, radians."""
     ##############  ADD YOUR CODE HERE  ##############
     # TODO: Task 1C
-    pass
+    return math.atan2(2* (w * z + x * y), w * w + x * x - y * y - z * z)
     ##################################################
 
 
