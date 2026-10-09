@@ -113,14 +113,8 @@ def body_to_wheels(vx, vy, wz):
     ##############  ADD YOUR CODE HERE  ##############
     # TODO: Task 1C. Scale all three wheels down together, do not clip each
     # one: clipping changes the direction the robot drives in.
-    X = np.array([vx, vy, wz])
-    M_inv = np.array([
-        [np.cos(np.radians(30)), np.sin(np.radians(30)), 1],
-        [np.cos(np.radians(150)), np.sin(np.radians(150)), 1],
-        [np.cos(np.radians(270)), np.sin(np.radians(270)), 1]
-    ])
-    wheel_speeds = (M_inv @ X)
-
+    wheel_speeds = body_velocity_to_wheel_speeds(vx,vy,wz)
+    
     if(abs(wheel_speeds[0]) > _CTRL_LIMIT):
         wheel_speeds[0]=_CTRL_LIMIT
         wheel_speeds[1]= wheel_speeds[1]*(_CTRL_LIMIT/wheel_speeds[0])
@@ -152,7 +146,9 @@ def wrap(a):
     """Angle -> the same angle in (-pi, pi]. 350 degrees becomes -10."""
     ##############  ADD YOUR CODE HERE  ##############
     # TODO
-    pass
+    if(a>180):
+        b = a - 180
+        b = b - 180
     ##################################################
 
 
@@ -161,7 +157,9 @@ def to_body(vx_a, vy_a, yaw):
     Check: at yaw = -pi/2 (facing up), arena (0, -v) must give body (v, 0)."""
     ##############  ADD YOUR CODE HERE  ##############
     # TODO
-    pass
+    body_x = (math.cos(yaw) * vx_a + math.sin(yaw) * vy_a)         #corrected according to body
+    body_y = (-math.sin(yaw) * vx_a + math.cos(yaw) * vy_a)
+    return body_x, body_y
     ##################################################
 
 
@@ -187,6 +185,11 @@ class GoToPoint:
         self.dt = dt                                     # s, 1 / CONTROL_HZ
         ##############  ADD YOUR CODE HERE  ##############
         # TODO: PID state -- integrals and previous errors for (x, y) and yaw
+        self.integral_ex = 0.0
+        self.integral_ey = 0.0
+        self.prev_ex = 0.0
+        self.prev_ey = 0.0                  #have to add intergrals and previous errors of yaw
+
         ##################################################
 
     def step(self, pose, target, hold_yaw):
@@ -198,7 +201,52 @@ class GoToPoint:
         #      capped at v_max, integral limited so it cannot wind up
         #   3. wz from a PID on wrap(hold_yaw - yaw), capped at w_max
         #   4. to_body(), then body_to_wheels()
-        pass
+        dx = target.x - pose.x            # point 1 done
+        dy = target.y - pose.y
+
+
+        distance = math.hypot(dx, dy)
+
+        if distance < GOAL_TOLERANCE:
+            self.wp_index += 1
+            self.integral_ex = 0.0
+            self.integral_ey = 0.0
+            self.prev_ex = 0.0                #after reaching the waypoints the errors will become zero
+            self.prev_ey = 0.0
+
+            if self.wp_index >= len(self.waypoints):
+                self.done = True
+                body_to_wheels(0,0,0)
+                return
+
+            return
+        self.integral_ex += dx / CONTROL_HZ            #to find integral that is  summation of dx with every control period of time
+        self.integral_ey += dy / CONTROL_HZ
+
+        derivative_ex = (dx - self.prev_ex) * CONTROL_HZ    
+        derivative_ey = (dy - self.prev_ey) * CONTROL_HZ 
+
+        self.prev_ex = dx 
+        self.prev_ey = dy
+
+        
+        vx_world = (self.kp * dx + self.ki * self.integral_ex + self.kd * derivative_ex)   
+        vy_world = (self.kp * dy + self.ki * self.integral_ey + self.kd * derivative_ey)
+
+        vx_body , vy_body = to_body(vx_world,vy_world)
+
+
+        dyaw = hold_yaw - pose.yaw
+        yaw = dyaw * self.kpyaw      # have to impliment the ki and kd for the yaw
+
+        # now the cliping parts 
+        vx_body = np.clip(vx_body,-self.v_max,self.v_max)
+        vy_body = np.clip(vx_body,-self.v_max,self.v_max)
+
+        yaw = np.clip(yaw,-self.w_max,self.w_max)
+
+
+        body_to_wheels(vx_body,vy_body,yaw)
         ##################################################
 
 
@@ -225,6 +273,7 @@ class RobotNode(Node):
         #     /<robot>/wheel_commands in self.pub
         #   - self.ctl = a GoToPoint for this robot
         #   - a timer calling self.tick at CONTROL_HZ
+        
         ##################################################
 
     def odom_cb(self, msg):
@@ -252,8 +301,7 @@ class RobotNode(Node):
         #     self.arrived, log "<robot> reached its goal (... mm out)", and
         #     call self.on_arrival(self.robot, seconds since self.t_start)
         pass
-        ##################################################
-
+        #################################################
 
 def main():
     """Given. One RobotNode per robot; logs "task 2A complete" at the end."""
