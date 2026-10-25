@@ -16,28 +16,15 @@
 *****************************************************************************************
 '''
 
-# Team ID:          [ Team-ID ]
-# Author List:      [ Names of team members who worked on this file, separated by comma ]
+# Team ID:          [ 2879 ]
+# Author List:      [ Neel Babaria , Harsh Vishwakarma]
 # Filename:         path_follower.py
-# Functions:        [ Add every extra helper function you write to this list ]
-# Global variables: [ Add every extra global variable you declare to this list ]
+# Functions:        No extra helper functions.
+# Global variables: None added.
 
 
-############################ WHAT YOU HAVE TO DO ##############################
-#
-#  Drive r2 along the timed path on /r2/plan, stopping on each goal.
-#
-#   1. Paste in your Task 2A code      (the FROM TASK 2A section)
-#   2. Write path_to_traj()            (the inverse of to_path_msg())
-#
-#  RobotNode is given: after the path's start time it aims your GoToPoint at
-#  where the path says the robot should be, and holds it on each goal.
-#
-#  Run:  ros2 launch hb_description task2b.launch.py
-#        ros2 run task_2b path_planner
-#        ros2 run task_2b path_follower
-#
-###############################################################################
+# Drive r2 along the timed /r2/plan, stopping on each goal.
+# Run with hb_description task2b.launch.py and the Task 2B path_planner.
 
 import math
 
@@ -50,82 +37,153 @@ from rclpy.time import Time
 from nav_msgs.msg import Odometry, Path
 from std_msgs.msg import Float64MultiArray
 
-################# ADD EXTRA IMPORTS / GLOBALS HERE ############
-
-###############################################################
-
-
-# ----------------------------------------------------- follower (given)
-ROBOTS = ("r2",)              # one node per robot
+# Follower constants from the Task 2B boilerplate.
+ROBOTS = ("r2",)
 CONTROL_HZ = 50.0
-GOAL_TOLERANCE = 0.020        # m, "on the goal"
-LEAD = 0.12                   # s, aim this far ahead on the path
-MIN_STOP = 0.5                # s, a pause this long in a path is a goal
+GOAL_TOLERANCE = 0.020
+LEAD = 0.12
+MIN_STOP = 0.5
 LATCHED = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL)
 
-# ----------------------------------------------------- robot (same as Task 1B)
-WHEEL_RADIUS_M = 0.0255       # m
-CHASSIS_RADIUS_M = 0.06412    # m, chassis centre to each wheel's axle
-WHEEL_ANGLES_RAD = np.radians([0.0, 0.0, 0.0])   # TODO: from Task 2A
-IK_MATRIX = np.zeros((3, 3))                     # TODO: from Task 2A
-_CTRL_LIMIT = 30.0            # rad/s, the wheels' ctrlrange in the robot's MJCF:
-                              # faster commands are clamped by the simulation
+WHEEL_RADIUS_M = 0.0255
+CHASSIS_RADIUS_M = 0.06412
+WHEEL_ANGLES_RAD = np.radians([30.0, 150.0, 270.0])
+IK_MATRIX = np.array([
+    [math.cos(angle), math.sin(angle), CHASSIS_RADIUS_M]
+    for angle in WHEEL_ANGLES_RAD
+]) / WHEEL_RADIUS_M
+_CTRL_LIMIT = 30.0
 
 
 ######################### FROM TASK 2A ########################
-## Paste your Task 2A functions and GoToPoint here, unchanged.##
-###############################################################
-
-##############  ADD YOUR CODE HERE  ##############
-
+# Keep these helpers and controller defaults in sync with Task 2A.
 def body_velocity_to_wheel_speeds(vx, vy, w):
-    pass   # TODO: from Task 2A
+    """Body twist (vx, vy, w) -> wheel speeds [left, right, back], rad/s."""
+    ##############  ADD YOUR CODE HERE  ##############
+    return IK_MATRIX @ np.array([vx, vy, w], dtype=float)
 
 
 def body_to_wheels(vx, vy, wz):
-    pass   # TODO: from Task 2A
+    """Like body_velocity_to_wheel_speeds(), but kept inside +/-_CTRL_LIMIT.
+    Returns a list."""
+    ##############  ADD YOUR CODE HERE  ##############
+    wheel_speeds = body_velocity_to_wheel_speeds(vx, vy, wz)
+    peak = float(np.max(np.abs(wheel_speeds)))
+    if peak > _CTRL_LIMIT:
+        wheel_speeds *= _CTRL_LIMIT / peak
+    return wheel_speeds.tolist()
 
 
 def yaw_from_quat(w, x, y, z):
-    pass   # TODO: from Task 2A
+    """Quaternion -> yaw, radians."""
+    ##############  ADD YOUR CODE HERE  ##############
+    return math.atan2(2.0 * (w * z + x * y),
+                      w * w + x * x - y * y - z * z)
 
 
 def wrap(a):
-    pass   # TODO: from Task 2A
+    """Angle -> the same angle in (-pi, pi]. 350 degrees becomes -10."""
+    ##############  ADD YOUR CODE HERE  ##############
+    angle = (a + math.pi) % (2.0 * math.pi) - math.pi
+    return math.pi if angle == -math.pi else angle
 
 
 def to_body(vx_a, vy_a, yaw):
-    pass   # TODO: from Task 2A
+    """Arena-frame velocity -> body-frame velocity (vx, vy).
+    Check: at yaw = -pi/2 (facing up), arena (0, -v) must give body (v, 0)."""
+    ##############  ADD YOUR CODE HERE  ##############
+    c, s = math.cos(yaw), math.sin(yaw)
+    return c * vx_a + s * vy_a, -s * vx_a + c * vy_a
 
 
 class GoToPoint:
-    """From Task 2A. RobotNode creates it as
-    GoToPoint(v_max=0.30, tol=0.012, dt=1.0 / CONTROL_HZ), so make your TUNED
-    gains the defaults -- zero gains do nothing."""
+    """PID controller: drive one robot straight at a point, holding a fixed yaw.
+    One instance per robot -- the PID terms keep state between steps."""
 
-    def __init__(self, v_max=0.0, w_max=0.0, kp=0.0, ki=0.0, kd=0.0,
-                 kyaw=0.0, kiyaw=0.0, kdyaw=0.0, tol=0.0, dt=0.0):
-        pass   # TODO: from Task 2A
+    def __init__(self, v_max=0.25, w_max=0.6, kp=2.0, ki=0.02, kd=0.05,
+                 kyaw=2.0, kiyaw=0.02, kdyaw=0.05,
+                 tol=GOAL_TOLERANCE, dt=1.0 / CONTROL_HZ):
+        self.v_max, self.w_max = v_max, w_max            # m/s, rad/s caps
+        self.kp, self.ki, self.kd = kp, ki, kd           # position PID
+        self.kyaw, self.kiyaw, self.kdyaw = kyaw, kiyaw, kdyaw   # yaw PID
+        self.tol = tol                                   # m, stop inside this
+        self.dt = dt                                     # s, 1 / CONTROL_HZ
+        ##############  ADD YOUR CODE HERE  ##############
+        if dt <= 0.0 or v_max <= 0.0 or w_max <= 0.0 or tol <= 0.0:
+            raise ValueError("dt, speed caps and tolerance must be positive")
+        self.integral_xy = np.zeros(2, dtype=float)
+        self.previous_xy = None
+        self.integral_yaw = 0.0
+        self.previous_yaw = None
+        ##################################################
 
     def step(self, pose, target, hold_yaw):
-        pass   # TODO: from Task 2A
+        """pose (x, y, yaw), target (x, y), hold_yaw -> (wheels, distance)."""
+        ##############  ADD YOUR CODE HERE  ##############
+        x, y, yaw = pose
+        error = np.array([target[0] - x, target[1] - y], dtype=float)
+        distance = float(np.linalg.norm(error))
+        derivative = (np.zeros(2) if self.previous_xy is None else
+                      (error - self.previous_xy) / self.dt)
+        self.previous_xy = error.copy()
 
-##################################################
+        if distance <= self.tol:
+            velocity = np.zeros(2)
+            self.integral_xy[:] = 0.0
+        else:
+            candidate = self.integral_xy + error * self.dt
+            # Limit the integral contribution as a vector, preserving direction.
+            if self.ki > 0.0:
+                integral_cap = 0.2 * self.v_max / self.ki
+                magnitude = float(np.linalg.norm(candidate))
+                if magnitude > integral_cap:
+                    candidate *= integral_cap / magnitude
+            else:
+                candidate[:] = 0.0
+            velocity = (self.kp * error + self.ki * candidate +
+                        self.kd * derivative)
+            speed = float(np.linalg.norm(velocity))
+            if speed > self.v_max:
+                velocity *= self.v_max / speed
+                # Freeze integration while the translation output saturates.
+            else:
+                self.integral_xy = candidate
+
+        yaw_error = wrap(hold_yaw - yaw)
+        yaw_derivative = (0.0 if self.previous_yaw is None else
+                          wrap(yaw_error - self.previous_yaw) / self.dt)
+        self.previous_yaw = yaw_error
+        yaw_candidate = self.integral_yaw + yaw_error * self.dt
+        if self.kiyaw > 0.0:
+            integral_cap = 0.2 * self.w_max / self.kiyaw
+            yaw_candidate = max(-integral_cap, min(integral_cap, yaw_candidate))
+        else:
+            yaw_candidate = 0.0
+        wz_raw = (self.kyaw * yaw_error + self.kiyaw * yaw_candidate +
+                  self.kdyaw * yaw_derivative)
+        wz = max(-self.w_max, min(self.w_max, wz_raw))
+        if abs(wz_raw) <= self.w_max:
+            self.integral_yaw = yaw_candidate
+
+        vx, vy = to_body(float(velocity[0]), float(velocity[1]), yaw)
+        return body_to_wheels(vx, vy, wz), distance
 
 
 ######################### PATH ################################
 
 def path_to_traj(msg):
-    """nav_msgs/Path -> [(t, x, y), ...], t = pose stamp - path stamp, in s."""
-    ##############  ADD YOUR CODE HERE  ##############
-    # TODO: Time.from_msg(stamp) gives a Time; (Time - Time).nanoseconds * 1e-9
-    pass
-    ##################################################
+    """Path -> [(t, x, y), ...], t relative to the path's header stamp."""
+    start = Time.from_msg(msg.header.stamp)
+    traj = []
+    for pose in msg.poses:
+        t = (Time.from_msg(pose.header.stamp) - start).nanoseconds * 1e-9
+        p = pose.pose.position
+        traj.append((t, float(p.x), float(p.y)))
+    return traj
 
 
 def stops_in(traj):
-    """Given. Goals on a timed path: [(arrive, leave, x, y), ...], in s.
-    A goal is a pause of at least MIN_STOP, or the end; the last is never left."""
+    """Given. Goals are pauses of at least MIN_STOP, or the end."""
     stops = [(t0, t1, x1, y1) for (t0, x0, y0), (t1, x1, y1) in zip(traj, traj[1:])
              if (x0, y0) == (x1, y1) and t1 - t0 >= MIN_STOP]
     if not stops or stops[-1][2:] != traj[-1][1:]:
@@ -156,7 +214,7 @@ class RobotNode(Node):
         self.robot, self.on_arrival = robot, on_arrival
         self.pose = self.hold_yaw = self.traj = self.start = None
         self.stops, self.reached, self.arrived = [], 0, False
-        self.held = 0.0                         # s the path clock has been held on a goal
+        self.held = 0.0
         self.create_subscription(Odometry, f"/{robot}/odom", self.on_odom, 10)
         self.create_subscription(Path, f"/{robot}/plan", self.on_path, LATCHED)
         self.pub = self.create_publisher(Float64MultiArray, f"/{robot}/wheel_commands", 10)
@@ -168,7 +226,7 @@ class RobotNode(Node):
         q = msg.pose.pose.orientation
         self.pose = (p.x, p.y, yaw_from_quat(q.w, q.x, q.y, q.z))
         if self.hold_yaw is None:
-            self.hold_yaw = self.pose[2]        # keep the starting heading throughout
+            self.hold_yaw = self.pose[2]
 
     def on_path(self, msg):
         if self.traj is None and msg.poses:
@@ -186,14 +244,14 @@ class RobotNode(Node):
             self.send((0.0, 0.0, 0.0))
             return
         now = (self.get_clock().now() - self.start).nanoseconds * 1e-9
-        if now < 0:                             # not the start time yet
+        if now < 0:
             self.send((0.0, 0.0, 0.0))
             return
-        t = now - self.held                     # where on the path the robot should be
+        t = now - self.held
         arrive, leave, *goal = self.stops[self.reached]
         to_go = math.dist(self.pose[:2], goal)
         which = "its goal" if len(self.stops) == 1 else "goal %d of %d" % (self.reached + 1, len(self.stops))
-        if t >= arrive:                         # the path is waiting on this goal
+        if t >= arrive:
             if to_go < GOAL_TOLERANCE:
                 self.get_logger().info("%s reached %s (%.0f mm out) at t=%.1fs"
                                        % (self.robot, which, to_go * 1000, now))
@@ -203,10 +261,9 @@ class RobotNode(Node):
                     self.send((0.0, 0.0, 0.0))
                     self.on_arrival(self.robot, now)
                     return
-            elif t > leave:                     # the stop is over but the robot is not on
-                self.held += t - leave          # the goal yet: hold the path clock until it is
+            elif t > leave:
+                self.held += t - leave
                 t = leave
-        # on a stop, aim at the goal itself: LEAD would aim down the next leg
         target = goal if t >= arrive else position_at(self.traj, t + LEAD)
         wheels, _ = self.ctl.step(self.pose, target, self.hold_yaw)
         self.send(wheels)
@@ -232,7 +289,7 @@ def main():
     finally:
         for n in nodes:
             try:
-                n.send((0.0, 0.0, 0.0))          # leave nothing driving
+                n.send((0.0, 0.0, 0.0))
             except Exception:
                 pass
             n.destroy_node()

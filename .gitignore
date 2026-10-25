@@ -1,0 +1,6 @@
+Software/workspace/build/
+Software/workspace/install/
+Software/workspace/log/
+.venv/
+.codex/
+.agents/

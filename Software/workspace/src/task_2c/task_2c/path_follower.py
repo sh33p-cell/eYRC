@@ -19,8 +19,8 @@
 # Team ID:          [ Team-ID ]
 # Author List:      [ Names of team members who worked on this file, separated by comma ]
 # Filename:         path_follower.py
-# Functions:        [ Add every extra helper function you write to this list ]
-# Global variables: [ Add every extra global variable you declare to this list ]
+# Functions:        No extra helper functions.
+# Global variables: None added.
 
 
 ############################ WHAT YOU HAVE TO DO ##############################
@@ -67,8 +67,11 @@ LATCHED = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL)
 # ----------------------------------------------------- robot (same as Task 1B)
 WHEEL_RADIUS_M = 0.0255       # m
 CHASSIS_RADIUS_M = 0.06412    # m, chassis centre to each wheel's axle
-WHEEL_ANGLES_RAD = np.radians([0.0, 0.0, 0.0])   # TODO: from Task 2A
-IK_MATRIX = np.zeros((3, 3))                     # TODO: from Task 2A
+WHEEL_ANGLES_RAD = np.radians([30.0, 150.0, 270.0])
+IK_MATRIX = np.array([
+    [math.cos(angle), math.sin(angle), CHASSIS_RADIUS_M]
+    for angle in WHEEL_ANGLES_RAD
+]) / WHEEL_RADIUS_M
 _CTRL_LIMIT = 30.0            # rad/s, the wheels' ctrlrange in the robot's MJCF:
                               # faster commands are clamped by the simulation
 
@@ -80,36 +83,115 @@ _CTRL_LIMIT = 30.0            # rad/s, the wheels' ctrlrange in the robot's MJCF
 ##############  ADD YOUR CODE HERE  ##############
 
 def body_velocity_to_wheel_speeds(vx, vy, w):
-    pass   # TODO: from Task 2A
+    """Body twist (vx, vy, w) -> wheel speeds [left, right, back], rad/s."""
+    ##############  ADD YOUR CODE HERE  ##############
+    return IK_MATRIX @ np.array([vx, vy, w], dtype=float)
 
 
 def body_to_wheels(vx, vy, wz):
-    pass   # TODO: from Task 2A
+    """Like body_velocity_to_wheel_speeds(), but kept inside +/-_CTRL_LIMIT.
+    Returns a list."""
+    ##############  ADD YOUR CODE HERE  ##############
+    wheel_speeds = body_velocity_to_wheel_speeds(vx, vy, wz)
+    peak = float(np.max(np.abs(wheel_speeds)))
+    if peak > _CTRL_LIMIT:
+        wheel_speeds *= _CTRL_LIMIT / peak
+    return wheel_speeds.tolist()
 
 
 def yaw_from_quat(w, x, y, z):
-    pass   # TODO: from Task 2A
+    """Quaternion -> yaw, radians."""
+    ##############  ADD YOUR CODE HERE  ##############
+    return math.atan2(2.0 * (w * z + x * y),
+                      w * w + x * x - y * y - z * z)
 
 
 def wrap(a):
-    pass   # TODO: from Task 2A
+    """Angle -> the same angle in (-pi, pi]. 350 degrees becomes -10."""
+    ##############  ADD YOUR CODE HERE  ##############
+    angle = (a + math.pi) % (2.0 * math.pi) - math.pi
+    return math.pi if angle == -math.pi else angle
 
 
 def to_body(vx_a, vy_a, yaw):
-    pass   # TODO: from Task 2A
+    """Arena-frame velocity -> body-frame velocity (vx, vy).
+    Check: at yaw = -pi/2 (facing up), arena (0, -v) must give body (v, 0)."""
+    ##############  ADD YOUR CODE HERE  ##############
+    c, s = math.cos(yaw), math.sin(yaw)
+    return c * vx_a + s * vy_a, -s * vx_a + c * vy_a
 
 
 class GoToPoint:
-    """From Task 2A. RobotNode creates it as
-    GoToPoint(v_max=0.30, tol=0.012, dt=1.0 / CONTROL_HZ), so make your TUNED
-    gains the defaults -- zero gains do nothing."""
+    """PID controller: drive one robot straight at a point, holding a fixed yaw.
+    One instance per robot -- the PID terms keep state between steps."""
 
-    def __init__(self, v_max=0.0, w_max=0.0, kp=0.0, ki=0.0, kd=0.0,
-                 kyaw=0.0, kiyaw=0.0, kdyaw=0.0, tol=0.0, dt=0.0):
-        pass   # TODO: from Task 2A
+    def __init__(self, v_max=0.25, w_max=0.6, kp=2.0, ki=0.02, kd=0.05,
+                 kyaw=2.0, kiyaw=0.02, kdyaw=0.05,
+                 tol=GOAL_TOLERANCE, dt=1.0 / CONTROL_HZ):
+        self.v_max, self.w_max = v_max, w_max            # m/s, rad/s caps
+        self.kp, self.ki, self.kd = kp, ki, kd           # position PID
+        self.kyaw, self.kiyaw, self.kdyaw = kyaw, kiyaw, kdyaw   # yaw PID
+        self.tol = tol                                   # m, stop inside this
+        self.dt = dt                                     # s, 1 / CONTROL_HZ
+        ##############  ADD YOUR CODE HERE  ##############
+        if dt <= 0.0 or v_max <= 0.0 or w_max <= 0.0 or tol <= 0.0:
+            raise ValueError("dt, speed caps and tolerance must be positive")
+        self.integral_xy = np.zeros(2, dtype=float)
+        self.previous_xy = None
+        self.integral_yaw = 0.0
+        self.previous_yaw = None
+        ##################################################
 
     def step(self, pose, target, hold_yaw):
-        pass   # TODO: from Task 2A
+        """pose (x, y, yaw), target (x, y), hold_yaw -> (wheels, distance)."""
+        ##############  ADD YOUR CODE HERE  ##############
+        x, y, yaw = pose
+        error = np.array([target[0] - x, target[1] - y], dtype=float)
+        distance = float(np.linalg.norm(error))
+        derivative = (np.zeros(2) if self.previous_xy is None else
+                      (error - self.previous_xy) / self.dt)
+        self.previous_xy = error.copy()
+
+        if distance <= self.tol:
+            velocity = np.zeros(2)
+            self.integral_xy[:] = 0.0
+        else:
+            candidate = self.integral_xy + error * self.dt
+            # Limit the integral contribution as a vector, preserving direction.
+            if self.ki > 0.0:
+                integral_cap = 0.2 * self.v_max / self.ki
+                magnitude = float(np.linalg.norm(candidate))
+                if magnitude > integral_cap:
+                    candidate *= integral_cap / magnitude
+            else:
+                candidate[:] = 0.0
+            velocity = (self.kp * error + self.ki * candidate +
+                        self.kd * derivative)
+            speed = float(np.linalg.norm(velocity))
+            if speed > self.v_max:
+                velocity *= self.v_max / speed
+                # Freeze integration while the translation output saturates.
+            else:
+                self.integral_xy = candidate
+
+        yaw_error = wrap(hold_yaw - yaw)
+        yaw_derivative = (0.0 if self.previous_yaw is None else
+                          wrap(yaw_error - self.previous_yaw) / self.dt)
+        self.previous_yaw = yaw_error
+        yaw_candidate = self.integral_yaw + yaw_error * self.dt
+        if self.kiyaw > 0.0:
+            integral_cap = 0.2 * self.w_max / self.kiyaw
+            yaw_candidate = max(-integral_cap, min(integral_cap, yaw_candidate))
+        else:
+            yaw_candidate = 0.0
+        wz_raw = (self.kyaw * yaw_error + self.kiyaw * yaw_candidate +
+                  self.kdyaw * yaw_derivative)
+        wz = max(-self.w_max, min(self.w_max, wz_raw))
+        if abs(wz_raw) <= self.w_max:
+            self.integral_yaw = yaw_candidate
+
+        vx, vy = to_body(float(velocity[0]), float(velocity[1]), yaw)
+        return body_to_wheels(vx, vy, wz), distance
 
 ##################################################
 
@@ -117,10 +199,14 @@ class GoToPoint:
 ######################### PATH ################################
 
 def path_to_traj(msg):
-    """nav_msgs/Path -> [(t, x, y), ...], t = pose stamp - path stamp, in s."""
-    ##############  ADD YOUR CODE HERE  ##############
-    # TODO: from Task 2B
-    pass
+    """Path -> [(t, x, y), ...], t relative to the path's header stamp."""
+    start = Time.from_msg(msg.header.stamp)
+    traj = []
+    for pose in msg.poses:
+        t = (Time.from_msg(pose.header.stamp) - start).nanoseconds * 1e-9
+        p = pose.pose.position
+        traj.append((t, float(p.x), float(p.y)))
+    return traj
     ##################################################
 
 
