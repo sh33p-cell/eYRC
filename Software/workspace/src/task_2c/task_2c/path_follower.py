@@ -20,7 +20,7 @@
 # Author List:      [ Names of team members who worked on this file, separated by comma ]
 # Filename:         path_follower.py
 # Functions:        No extra helper functions.
-# Global variables: None added.
+# Global variables: SETTLE_TICKS
 
 
 ############################ WHAT YOU HAVE TO DO ##############################
@@ -62,6 +62,7 @@ CONTROL_HZ = 50.0
 GOAL_TOLERANCE = 0.020        # m, "on the goal"
 LEAD = 0.12                   # s, aim this far ahead on the path
 MIN_STOP = 0.5                # s, a pause this long in a path is a goal
+SETTLE_TICKS = 10             # stay inside tolerance for 0.2 s before parking
 LATCHED = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL)
 
 # ----------------------------------------------------- robot (same as Task 1B)
@@ -77,7 +78,7 @@ _CTRL_LIMIT = 30.0            # rad/s, the wheels' ctrlrange in the robot's MJCF
 
 
 ######################### FROM TASK 2A ########################
-## Paste your Task 2A functions and GoToPoint here, unchanged.##
+## Task 2A kinematics, with Task 2C position gains below.     ##
 ###############################################################
 
 ##############  ADD YOUR CODE HERE  ##############
@@ -125,7 +126,7 @@ class GoToPoint:
     """PID controller: drive one robot straight at a point, holding a fixed yaw.
     One instance per robot -- the PID terms keep state between steps."""
 
-    def __init__(self, v_max=0.25, w_max=0.6, kp=2.0, ki=0.02, kd=0.05,
+    def __init__(self, v_max=0.25, w_max=0.6, kp=6.0, ki=0.02, kd=0.05,
                  kyaw=2.0, kiyaw=0.02, kdyaw=0.05,
                  tol=GOAL_TOLERANCE, dt=1.0 / CONTROL_HZ):
         self.v_max, self.w_max = v_max, w_max            # m/s, rad/s caps
@@ -243,11 +244,14 @@ class RobotNode(Node):
         self.robot, self.on_arrival = robot, on_arrival
         self.pose = self.hold_yaw = self.traj = self.start = None
         self.stops, self.reached, self.arrived = [], 0, False
+        self.goal_settled = 0
         self.held = 0.0                         # s the path clock has been held on a goal
         self.create_subscription(Odometry, f"/{robot}/odom", self.on_odom, 10)
         self.create_subscription(Path, f"/{robot}/plan", self.on_path, LATCHED)
         self.pub = self.create_publisher(Float64MultiArray, f"/{robot}/wheel_commands", 10)
-        self.ctl = GoToPoint(v_max=0.30, tol=0.012, dt=1.0 / CONTROL_HZ)
+        # The plan runs at 0.40 m/s. Leave correction headroom so a robot
+        # can regain its timed position after turns instead of falling behind.
+        self.ctl = GoToPoint(v_max=0.50, tol=0.012, dt=1.0 / CONTROL_HZ)
         self.create_timer(1.0 / CONTROL_HZ, self.tick)
 
     def on_odom(self, msg):
@@ -281,10 +285,14 @@ class RobotNode(Node):
         to_go = math.dist(self.pose[:2], goal)
         which = "its goal" if len(self.stops) == 1 else "goal %d of %d" % (self.reached + 1, len(self.stops))
         if t >= arrive:                         # the path is waiting on this goal
-            if to_go < GOAL_TOLERANCE:
+            # At higher speeds, crossing the tolerance once does not mean
+            # the robot has settled. Keep controlling while it slows down.
+            self.goal_settled = self.goal_settled + 1 if to_go < GOAL_TOLERANCE else 0
+            if self.goal_settled >= SETTLE_TICKS:
                 self.get_logger().info("%s reached %s (%.0f mm out) at t=%.1fs"
                                        % (self.robot, which, to_go * 1000, now))
                 self.reached += 1
+                self.goal_settled = 0
                 if self.reached == len(self.stops):
                     self.arrived = True
                     self.send((0.0, 0.0, 0.0))

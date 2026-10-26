@@ -86,7 +86,7 @@ SAND_LOW, SAND_HIGH = (10, 40, 170), (30, 120, 255)      # sand colour, HSV
 
 # ----------------------------------------------------- planning (tunable)
 PLAN_CELL = 0.04                     # m, planning grid cell
-PLAN_SPEED = 0.10                    # m/s; conservative timing for the PID follower
+PLAN_SPEED = 0.40                    # m/s; follower has 0.50 m/s catch-up headroom
 ROBOT_CLEARANCE = 0.26               # m, keep two robots' plans this far apart
 START_DELAY = 2.0                    # s, from publishing to setting off
 
